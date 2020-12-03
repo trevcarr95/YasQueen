@@ -1,0 +1,95 @@
+body {
+    background-color: lightblue;
+    max-width: 500px;
+    margin: auto;
+    margin-top: 50px;
+    
+}
+
+#headline {
+    margin: auto;
+    text-align: center;
+    color: black;
+    font-size: 50px;
+    /* animation-name: yas; */
+    /* animation-duration: 10s;
+    animation-iteration-count: infinite; */
+    /* animation: yas 2s linear infinite; */
+    /* color: #fff; */
+    /* text-shadow: 0 0 10px rgba(255, 255, 255, 0.39),
+                 0 0 20px #fff,
+                 0 0 40px #fff,
+                 0 0 80px #fff,
+                 0 0 120px #fff,
+                 0 0 160px #fff,
+                 0 0 180px #fff, */
+}
+
+
+/* #headline span:nth-child(1){
+    color: lightcoral;
+    animation-delay: 0s;
+}
+#headline span:nth-child(2){
+    animation-delay: 0.2s;
+}
+#headline span:nth-child(3){
+    animation-delay: 0.4s;
+} */
+#headline :nth-child(2){
+    color: red;
+    text-shadow: black;
+    /* animation-delay: 0.8; */
+}
+#headline :nth-child(3){
+    color: orange;
+    /* animation-delay: 1.0s; */
+}
+#headline :nth-child(4){
+    color: yellow;
+    /* animation-delay: 1.2s; */
+}
+#headline :nth-child(5){
+    color: green;
+    /* animation-delay: 1.4s; */
+}
+#headline :nth-child(6){
+    color: blue;
+    /* animation-delay: 1.6s; */
+}
+#headline :nth-child(7){
+    color: violet;
+    /* animation-delay: 1.8s; */
+} 
+
+#root {
+    margin: auto;
+    text-align: center;
+}
+
+@keyframes yas {
+  /* 0%   {color: red;}
+  14%  {color: orange;}
+  28%  {color: yellow;}
+  42%  {color: green;}
+  56%  {color: blue;}
+  70%  {color: indigo;}
+  84%  {color: violet;} */
+  /* 0%,80% {
+    color: #0091ea;
+    text-shadow: none;
+} */
+/* 100% {
+    color: #fff;
+    text-shadow: 0 0 10px #fff,
+                 0 0 20px #fff,
+                 0 0 40px #fff,
+                 0 0 80px #fff,
+                 0 0 120px #fff,
+                 0 0 160px #fff,
+                 0 0 180px #fff,
+} */
+}
+
+
+
