@@ -31,8 +31,8 @@ body .submit-event:hover {
 }
 
 body .find-event {
-    background-color: rgb(96, 187, 218);
-    color: black;
+    background-color: rgb(96, 187, 218);;
+    color:black;
     font-size: 20px;
     margin: 5px;
     margin-bottom: 25px;
@@ -142,18 +142,38 @@ body .find-event:hover {
       background-color: rgb(5, 131, 5);
   }
 
-  .thanks-popup {
+  #submit-close {
+      color: red;
+      margin-top: 5px;
+  }
+
+
+  .search-popup {
     position: fixed;
-    bottom: 0;
-    right: 15px;
+    bottom: 50;
+    /* right: 50; */
     border: 3px solid #f1f1f1;
     z-index: -1;
   }
 
-  .thanks-container {
+  .search-container {
     max-width: 300px;
     padding: 5px;
     background-color: white;
+  }
+
+  .search-container input[type=text] {
+    width: 80%;
+    padding: 5px;
+    margin: 2px 0 10px 0;
+    border: none;
+    background: #f1f1f1;
+    font-weight: bold;
+  }
+
+  .search-container input[type=text]:focus {
+    background-color: #ddd;
+    outline: none;
   }
 
 

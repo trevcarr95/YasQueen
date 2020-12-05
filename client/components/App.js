@@ -1,39 +1,51 @@
 import React, { Component } from 'react';
-import PopUp from './PopUp';
-import ThankYou from './ThankYou';
+import SubmitPopUp from './SubmitPopUp';
+import SearchPopUp from './SearchPopUp';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            seen: false,
+            submit: false,
+            search: false,
         };
-        this.togglePop = this.togglePop.bind(this);
+        this.toggleSubmit = this.toggleSubmit.bind(this);
+        this.toggleSearch = this.toggleSearch.bind(this);
     }
 
-    togglePop() {
+    toggleSubmit() {
         this.setState({
-            seen: !this.state.seen,
+            submit: !this.state.submit,
+        });
+    };
+
+    toggleSearch() {
+        this.setState({
+            search: !this.state.search,
         });
     };
     
     render() {
         return (
             <div>
-                <h3>Do you want to submit a show or find one?</h3>
+                <h3>Let us plan your night!</h3>
                 {/* <form method='POST' action='/submit'>
                 <button className='submit-event'>Submit Show</button>
                 </form>
                 <form method='POST' action='/search'>
                 <button className='find-event'>Find Show</button>
                 </form> */}
-                <div onClick={this.togglePop}>
+                <div onClick={this.toggleSubmit}>
                     <button className='submit-event'>Submit Show</button>
                 </div>
-                {this.state.seen ? <PopUp toggle={this.togglePop} /> : null }
-                <form method='POST' action='/search'>
+                {this.state.submit ? <SubmitPopUp toggle={this.toggleSubmit} /> : null }
+                {/* <form method='POST' action='/search'>
                 <button className='find-event'>Find Show</button>
-                </form>
+                </form> */}
+                <div onClick={this.toggleSearch}>
+                    <button className='find-event'>Find Show</button>
+                </div>
+                {this.state.search ? <SearchPopUp toggle={this.toggleSearch} /> : null }
             </div>
         );
     }

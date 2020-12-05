@@ -30,7 +30,6 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-
 app.use(express.static(__dirname + '/client'));
 
 // statically serve everything in the build folder on the route '/build'
@@ -42,11 +41,11 @@ app.get('/', (req, res) => {
 
 app.post('/api/submit', showController.addShow, (req, res) => {
   // return res.status(200).send('Thank you for submitting this event!');
-  res.status(200).json(req.body);
+  return res.status(200).json(req.body);
 })
 
-app.post('/search', (req, res) => {
-  return res.status(200).send('Search form!');
+app.post('/api/search', showController.getShow, (req, res) => {
+  return res.status(200).json(req.body);
 })
 
 app.use('*', (req,res) => {

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import ThankYou from './ThankYou';
 
-class PopUp extends Component {
+class SubmitPopUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,7 +10,6 @@ class PopUp extends Component {
             date: '',
             time: '',
             cover: '',
-            submitted: true
         }
         this.toggle=this.props.toggle;
         this.handlePerformerChange = this.handleChange.bind(this, 'performer');
@@ -51,7 +49,6 @@ class PopUp extends Component {
             date: '',
             time: '',
             cover: '', 
-            submitted: false
         })
         fetch('/api/submit', {
             method: 'POST',
@@ -61,20 +58,20 @@ class PopUp extends Component {
             },
             body: JSON.stringify(body)
           })
-          .then(resp => resp.json())
+          .then(res => res.json())
           .then(data => {
-            console.log('THIS IS THE DATA IN POPUP.JS', data);
+            console.log('THIS IS THE DATA IN SUBMITPOPUP.JS', data);
           })
-          .catch(err => console.log('THIS IS IN POPUP.JS : ERROR: ', err));
+          .catch(err => console.log('THIS IS IN SUBMITPOPUP.JS : ERROR: ', err));
     }
 
     render() {
         return (
             <div className='submit-popup'>
                 <div className='submit-popup-content'>
-                    <span className='close' onClick={this.handleClose}>&times;</span>
-                    {/* <form className='close' onClick={this.handleClick}>&times;</form> */}
+                    {/* <span id='submit-close' onClick={this.handleClose}>&times;</span> */}
                     <div className='container'>
+                    <span id='submit-close' onClick={this.handleClose}>&times;</span>
                         <h3 id='deetz'>Give Us The Deetz!</h3>
                         <label id='performer'>
                             Performer:
@@ -101,12 +98,8 @@ class PopUp extends Component {
                             <input onChange={this.handleCoverChange} type='text' placeholder = '$' value = {this.state.cover} />
                         </label>
                         <br />
-                        {/* <form onSubmit={this.handleSubmit}> */}
-                        {/* <input id='send-info' type='submit' value='submit' text ='Submit'/> */}
                         <button id='send-info' onClick={this.handleSubmit}>Submit</button>
                         <h3>Thank you for your submission!</h3>
-                        {/* {this.state.submitted ? <ThankYou toggle={this.toggle} handleClose = {this.handleClose} /> : null} */}
-                        {/* </form>  */}
                     </div>
                 </div>
             </div>
@@ -115,4 +108,4 @@ class PopUp extends Component {
 }
 
 
-export default PopUp
+export default SubmitPopUp
