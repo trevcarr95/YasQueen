@@ -1,0 +1,162 @@
+body {
+    background-color:whitesmoke;
+    /* background-image: url('https://i.redd.it/oqia80pqrb7y.jpg'); */
+    max-width: 750px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: rgba(105, 100, 100, 0.863);
+    border-radius: 15px;
+}
+
+body .intro-box {
+    background-color: rgb(114, 201, 230);
+    padding-bottom: 10px;
+    border-radius: 9px;
+}
+
+body .submit-event {
+    background-color: rgb(96, 187, 218);
+    color: black;
+    font-size: 20px;
+    margin: 5px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+body .submit-event:hover {
+    background-color: rgb(49, 175, 218);
+}
+
+body .find-event {
+    background-color: rgb(96, 187, 218);
+    color: black;
+    font-size: 20px;
+    margin: 5px;
+    margin-bottom: 25px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+body .find-event:hover {
+    background-color: rgb(49, 175, 218);
+}
+
+#headline {
+    margin: auto;
+    text-align: center;
+    color: black;
+    font-size: 50px;
+}
+
+#tagline {
+    margin: auto;
+    text-align: center;
+    color: black;
+    margin-bottom: 5px;
+}
+
+#headline :nth-child(2){
+    color: red;
+    text-shadow: 1px 1px black;
+}
+#headline :nth-child(3){
+    color: orange;
+    text-shadow: 1px 1px black;
+}
+#headline :nth-child(4){
+    color: yellow;
+    text-shadow: 1px 1px black;
+}
+#headline :nth-child(5){
+    color: green;
+    text-shadow: 1px 1px black;
+}
+#headline :nth-child(6){
+    color: blue;
+    text-shadow: 1px 1px black;
+}
+#headline :nth-child(7){
+    color: violet;
+    text-shadow: 1px 1px black;
+} 
+
+#root {
+    margin: auto;
+    text-align: center;
+    /* background-color: whitesmoke; */
+}
+
+@keyframes yas {
+
+}
+
+.submit-popup {
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+
+  .container {
+    max-width: 300px;
+    padding: 5px;
+    background-color: white;
+  }
+
+  .container input[type=text] {
+    width: 80%;
+    padding: 15px;
+    margin: 2px 0 10px 0;
+    border: none;
+    background: #f1f1f1;
+    font-weight: bold;
+  }
+
+  .container input[type=text]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  #deetz {
+    font-size: 25px;
+  }
+
+  #performer, #venue, #address, #date, #time, #cover{
+    font-weight: bold;
+  }
+
+  #send-info {
+      background-color: rgb(6, 155, 6);
+      font-size: 16px;
+      border-radius: 5px;
+      color: white;
+      padding: 5px;
+  }
+
+  #send-info:hover {
+      background-color: rgb(5, 131, 5);
+  }
+
+  .thanks-popup {
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: -1;
+  }
+
+  .thanks-container {
+    max-width: 300px;
+    padding: 5px;
+    background-color: white;
+  }
+
+
+
+
+

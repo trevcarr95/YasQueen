@@ -24,6 +24,11 @@ module.exports = {
         },
       },
       {
+        test:/\.jsx?$/,
+        enforce: 'pre',
+        use: ['source-map-loader']
+      },
+      {
         test: /\.s?[ac]ss/i,
         // use: ExtractTextPlugin.extract({
         //   use: ['style-loader', "css-loader", "sass-loader"],
@@ -35,7 +40,7 @@ module.exports = {
   devServer: {
     publicPath: "/build",
     proxy: {
-      "/": {
+      "/api": {
         target: "http://localhost:3000",
       },
     },
