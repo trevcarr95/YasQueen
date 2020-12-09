@@ -52,20 +52,7 @@ class SearchPopUp extends Component {
             criteria: 'performer',
             value: ''
         });
-        // fetch('/api/search')
-        fetch('/api/search', {
-            method: 'POST',
-            headers: {
-              "Content-Type": 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify(body)
-        })
-        .then(res => res.json())
-        .then(shows => {
-            console.log(shows);
-        })
-        .catch(err => console.log('THIS IS IN SEARCHPOPUP.JS : ERROR: ', err));
+        this.props.fetchRequest(body);
     }
 
     render() {
@@ -100,17 +87,3 @@ class SearchPopUp extends Component {
 }
 
 export default SearchPopUp
-
- // fetch('/api/search', {
-        //     method: 'GET',
-        //     headers: {
-        //       "Content-Type": 'application/json',
-        //       'Accept': 'application/json'
-        //     },
-        //     body: JSON.stringify(body)
-        //   })
-        //   .then(resp => resp.json())
-        //   .then(data => {
-        //     console.log('THIS IS THE DATA IN SEARCH.JS', data);
-        //   })
-        //   .catch(err => console.log('THIS IS IN SEARCHPOPUP.JS : ERROR: ', err));

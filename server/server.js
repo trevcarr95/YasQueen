@@ -24,6 +24,8 @@ mongoose.connect(MONGO_URI, {
 .then(()=>console.log('Connected to Mongo DB.'))
 .catch(err=>console.log(err));
 
+
+app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'ejs');
 
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,18 +37,20 @@ app.use(express.static(__dirname + '/client'));
 // statically serve everything in the build folder on the route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
 // serve index.html on the route '/'
+
+app.post('/api/submit', showController.addShow, (req, res) => {
+  return res.status(200).json(req.body);
+})
+
+
+app.post('/api/search', showController.getShow, (req, res) => {
+  return res.json(res.locals.shows);
+})
+
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
-
-app.post('/api/submit', showController.addShow, (req, res) => {
-  // return res.status(200).send('Thank you for submitting this event!');
-  return res.status(200).json(req.body);
-})
-
-app.post('/api/search', showController.getShow, (req, res) => {
-  return res.status(200).json(req.body);
-})
 
 app.use('*', (req,res) => {
     res.status(404).send('Not Found');

@@ -61,6 +61,7 @@ class SubmitPopUp extends Component {
           .then(res => res.json())
           .then(data => {
             console.log('THIS IS THE DATA IN SUBMITPOPUP.JS', data);
+            return next();
           })
           .catch(err => console.log('THIS IS IN SUBMITPOPUP.JS : ERROR: ', err));
     }
