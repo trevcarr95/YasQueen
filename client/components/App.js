@@ -101,20 +101,37 @@ class App extends Component {
             <div>
             <div id='main-div'>
                 <h3 id='small-banner'>Let us plan your night!</h3>
-                <div onClick={this.toggleSubmit}>
-                    <button className='submit-event'>Submit Show</button>
+                <div className='buttons'>
+                    <button onClick={this.toggleSearch} className='find-event'>Find Show</button>
+                    <button onClick={this.toggleSubmit} className='submit-event'>Submit Show</button>
                 </div>
                 {this.state.submit ? <SubmitPopUp toggle={this.toggleSubmit} /> : null }
-                <div onClick={this.toggleSearch}>
-                    <button className='find-event'>Find Show</button>
-                </div>
                 {this.state.search ? <SearchPopUp toggle={this.toggleSearch} fetchRequest={this.fetchRequest}/> : null }
                 {this.state.shows.length ? <div><button className='reset' onClick={this.toggleReset}>Reset Results</button></div> : null}
+                {shows}
             </div>
-            {shows}
+            {/* {shows} */}
             </div>
         );
     }
 }
 
 export default App;
+
+// return (
+//     <div>
+//     <div id='main-div'>
+//         <h3 id='small-banner'>Let us plan your night!</h3>
+//         <div onClick={this.toggleSubmit}>
+//             <button className='submit-event'>Submit Show</button>
+//         </div>
+//         {this.state.submit ? <SubmitPopUp toggle={this.toggleSubmit} /> : null }
+//         <div onClick={this.toggleSearch}>
+//             <button className='find-event'>Find Show</button>
+//         </div>
+//         {this.state.search ? <SearchPopUp toggle={this.toggleSearch} fetchRequest={this.fetchRequest}/> : null }
+//         {this.state.shows.length ? <div><button className='reset' onClick={this.toggleReset}>Reset Results</button></div> : null}
+//     </div>
+//     {shows}
+//     </div>
+// );

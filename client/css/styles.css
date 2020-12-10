@@ -34,6 +34,7 @@ body .find-event:hover {
     color: black;
     font-size: 50px;
     background-color: rgb(140, 210, 233);
+    /* background-color: black; */
     width: 100%;
 }
 
@@ -42,13 +43,19 @@ body .find-event:hover {
     text-align: center;
     color: black;
     padding-bottom: 15px;
-    background-color: rgb(140, 210, 233);;
+    background-color: rgb(140, 210, 233);
+    /* background-color: black; */
 }
 
 #headline :nth-child(2){
     color: red;
     text-shadow: 1px 1px black;
 }
+
+/* #headline :nth-child(2) :nth-child(1) {
+    color: purple;
+} */
+
 /* #headline :nth-child(3){
     color: orange;
     text-shadow: 1px 1px black;
@@ -74,6 +81,8 @@ body .find-event:hover {
     margin: auto;
     text-align: center;
     background-color: whitesmoke;
+    border-color: lightslategray;
+    border-style: double;
 }
 
 #small-banner {
@@ -113,8 +122,14 @@ body .find-event:hover {
     outline: none;
   }
 
-  #deetz {
+  #submit-deetz {
     font-size: 25px;
+    margin-top: 0px;
+    /* visibility: hidden; */
+  }
+
+  #submit-thanks {
+      margin: 3px;
   }
 
   #performer, #venue, #address, #date, #time, #cover{
@@ -138,6 +153,7 @@ body .find-event:hover {
       margin-top: 5px;
   }
 
+  /* BOTTOM LEFT VERSION 
   .search-popup {
     position: fixed;
     bottom: 0;
@@ -146,15 +162,32 @@ body .find-event:hover {
     border-color: rgb(96, 187, 218);
     border-style: outset;
   }
+  */
 
+  .search-popup {
+    width: 50%;
+    margin: auto;
+    position: relative;
+    border: 3px solid #f1f1f1;
+    /* z-index: 1; */
+    /* border-color: rgb(96, 187, 218);
+    border-style: outset; */
+  }
+
+  /* BOTTOM LEFT VERSION 
   .search-container {
     max-width: 300px;
     padding: 5px;
     background-color: white;
   }
+  */
+  .search-container {
+    padding: 5px;
+    background-color: lightgray;
+  }
 
-  .search-container input[type=text] {
-    width: 80%;
+  .search-container #search-city input[type=text] {
+    width: 25%;
     padding: 5px;
     margin: 2px 0 10px 0;
     border: none;
@@ -162,9 +195,32 @@ body .find-event:hover {
     font-weight: bold;
   }
 
-  .search-container input[type=text]:focus {
+  .search-container #search-city input[type=text]:focus {
     background-color: #ddd;
     outline: none;
+  }
+
+  .search-container #search-field input[type=text] {
+    width: 30%;
+    padding: 5px;
+    margin: 2px 20px 20px 20px;
+    border: none;
+    background: #f1f1f1;
+    font-weight: bold;
+  }
+
+  .search-container #search-field input[type=text]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  #search-deetz {
+      margin: 0;
+  }
+
+  #refine {
+      margin-top: 5px;
+      margin-bottom: 0px;
   }
 
   #try-again {
@@ -172,9 +228,10 @@ body .find-event:hover {
   }
 
   .reset {
-      background-color: white;
+      background-color: red;
       color: black;
       margin-bottom: 10px;
+      border-radius: 5px;
   }
 
   .result-box {
@@ -185,9 +242,18 @@ body .find-event:hover {
         margin: auto;
         font-size: .9em;
         box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
-        border-color: rgb(96, 187, 218);
-        border-style: outset;
+        /* border-color: rgb(96, 187, 218); */
+        /* border-style: outset; */
         text-align: center;
+        
+            /* padding: 5px;
+            width:30%;
+            margin: 40px 5px 40px 5px;
+            position: relative;
+            float:left;
+            font-size: .8em;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, .2); */
+    
   }
 
 
@@ -214,8 +280,22 @@ body .find-event:hover {
      visibility: hidden;
   }
 
-  #venmo {
-      position: relative;
-      text-align: right
+  #tip {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  #footer-bar-bar {
+    margin: auto;
+    text-align: center;
+    color: black;
+    background-image: url('https://www.pngkey.com/png/detail/498-4983990_header-menu-cartoon-drag-queen-eyes.png');
+    background-size: 100px;
+    background-repeat: repeat-x;
+    width: 100%;
+    bottom: 0;
   }
 

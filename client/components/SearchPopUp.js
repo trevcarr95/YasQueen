@@ -61,11 +61,11 @@ class SearchPopUp extends Component {
                 <div className='search-popup-content'>
                     <div className='search-container'>
                     <span id='search-close' onClick={this.handleClose}>&times;</span>
-                        <h3 id='deetz'>Search for events in: </h3>
+                        <h3 id='search-deetz'>Search for events in: </h3>
                         <label id='search-city'>
                             <input onChange={this.handleCityChange} value = {this.state.city} type='text' placeholder='Enter city'/>
                         </label>
-                        <h4>Refine your search</h4>
+                        <h4 id='refine'>Refine your search</h4>
                         <select id='select-criteria' value={this.state.criteria} onChange={this.handleCriteriaChange}>
                             <option value='performer'>Performer</option>
                             <option value='venue'>Venue</option>

@@ -3,27 +3,51 @@ const Show = require('../models/showModel');
 const showController = {};
 
 showController.addShow = (req, res, next) => {
-    // console.log('showController.addShow)', req.body);
-    Show.create({
-        performer: req.body.performer,
-        venue: req.body.venue,
-        address: req.body.address, 
-        date: req.body.date,
-        time: req.body.time, 
-        cover: req.body.cover
-    })
+    Show.find({performer : `${req.body.performer}`, date: `${req.body.date}`, time: `${req.body.time}`}).exec()
     .then(result => {
-        return next();
+        if (!result.length) {
+            Show.create({
+                performer: req.body.performer,
+                venue: req.body.venue,
+                address: req.body.address, 
+                date: req.body.date,
+                time: req.body.time, 
+                cover: req.body.cover
+            })
+            .then(result => {
+                return next();
+             })
+        .catch(err => {
+            console.log('catch statement')
+            return next(err);
+        })  
+    }
+        else {
+            res.locals.alreadyExists = true;
+            console.log('this event exists already', result);
+            return next()
+        }
     })
-    .catch(err => {
-        console.log('catch statement')
-        return next(err);
-    })
+
+    // Show.create({
+    //     performer: req.body.performer,
+    //     venue: req.body.venue,
+    //     address: req.body.address, 
+    //     date: req.body.date,
+    //     time: req.body.time, 
+    //     cover: req.body.cover
+    // })
+    // .then(result => {
+    //     return next();
+    // })
+    // .catch(err => {
+    //     console.log('catch statement')
+    //     return next(err);
+    // })
 }
 
 showController.getShow = (req, res, next) => {
-    // console.log('showController.findShow', req.body);
-
+    
     //if only searching by city, no other requirements
     if (!req.body.value) {
         Show.find({address : {$regex: `${req.body.city}`}}).exec()

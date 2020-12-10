@@ -39,7 +39,11 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 // serve index.html on the route '/'
 
 app.post('/api/submit', showController.addShow, (req, res) => {
-  return res.status(200).json(req.body);
+  console.log(res.locals.alreadyExists);
+  if (res.locals.alreadyExists) {
+    return res.status(200).json('this event is already in our database')
+  }
+  else return res.status(200).json(req.body);
 })
 
 
