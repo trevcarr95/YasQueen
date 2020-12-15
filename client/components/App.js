@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SubmitPopUp from './SubmitPopUp';
 import SearchPopUp from './SearchPopUp';
 import ShowDisplay from './ShowDisplay';
+import '../css/styles.css';
 
 class App extends Component {
     constructor(props) {
@@ -9,20 +10,21 @@ class App extends Component {
         this.state = {
             submit: false,
             search: false,
-            // shows: [{
-            //     performer: '',
-            //     venue: '',
-            //     address: '',
-            //     date: '',
-            //     time: '',
-            //     cover: '',
-            // }] 
-            shows: []
+            shows: [],
+            city: ''
         };
         this.toggleSubmit = this.toggleSubmit.bind(this);
         this.toggleSearch = this.toggleSearch.bind(this);
         this.fetchRequest = this.fetchRequest.bind(this);
         this.toggleReset = this.toggleReset.bind(this);
+        this.setCity = this.setCity.bind(this);
+        // this.geoAddress = this.geoAddress.bind(this);
+    }
+
+    setCity(e) {
+        this.setState({ 
+            city: e.target.value
+        })
     }
 
     toggleSubmit() {
@@ -39,17 +41,10 @@ class App extends Component {
 
     toggleReset() {
         this.setState({
-            // shows: [{
-            //     performer: '',
-            //     venue: '',
-            //     address: '',
-            //     date: '',
-            //     time: '',
-            //     cover: '',
-            // }]
             shows: []
         });
     };
+
 
 
     fetchRequest(body) {
@@ -70,8 +65,26 @@ class App extends Component {
                 }]
             })
             else {
+                let validShows = [];
+                let today = new Date();
+                var yesterday= new Date(today);
+                yesterday.setDate(today.getDate()-1);
+                
+                const origOrder = shows;
+
+                // const sortedShows = shows.sort((a, b) => b.date - a.date);
+                const sortedShows = shows.sort((a, b) => {
+                    // console.log(a.date.slice(4));
+                    return (a.date.slice(4) > b.date.slice(4)) ? 1 : -1
+                })
+
+
+                shows.forEach(show => {
+                    let showDate = new Date(show.date);
+                    if (showDate > yesterday) validShows.push(show);
+                })
             this.setState({
-                shows: shows
+                shows: validShows
             })
         }
         })
@@ -85,32 +98,33 @@ class App extends Component {
         if (this.state.shows.length === 1 && this.state.shows[0]['performer'] === 'No matching results') {
             shows.push(<h3 id='try-again' key={`no-results`}>Try again! No events found matching this search</h3>)
         }
-        // if (this.state.shows.length) {
             else {
             for (let i = 0; i < this.state.shows.length; i++) {
-                shows.push(<ShowDisplay performer={this.state.shows[i].performer} venue={this.state.shows[i].venue} address={this.state.shows[i].address} date={this.state.shows[i].date} time={this.state.shows[i].time} cover={this.state.shows[i].cover}key={`show-${i}`}/>)
+                shows.push(<ShowDisplay latitude={this.state.shows[i].latitude} longitude={this.state.shows[i].longitude} performer={this.state.shows[i].performer} venue={this.state.shows[i].venue} address={this.state.shows[i].address} date={this.state.shows[i].date} time={this.state.shows[i].time} cover={this.state.shows[i].cover}key={`show-${i}`}/>)
             }
         }
-        // } else shows.push(<h1 key={`no results found`}>No events found</h1>)
-
-        // if (this.state.shows) {this.state.shows.map((show, i) => shows.push(<ShowDisplay key={`show-${i}`} performer={this.state.shows[i].performer} venue={this.state.shows[i].venue} date={this.state.shows[i].date} time={this.state.shows[i].time} cover={this.state.shows[i].cover}/>))} 
-        
-        // if (Array.isArray(this.state.shows)) shows.push(<h1 key={`no-results`}>No results found</h1>)
 
         return (
             <div>
             <div id='main-div'>
                 <h3 id='small-banner'>Let us plan your night!</h3>
+                <select id='select-city' value={this.state.city} onChange={this.setCity}>
+            <option value='Select City'>Select City</option>
+                            <option value='New York/Brooklyn'>New York/Brooklyn</option>
+                            <option value='Los Angeles'>Los Angeles</option>
+                            <option value='Miami'>Miami</option>
+                            <option value='Chicago'>Chicago</option>
+                        </select>
                 <div className='buttons'>
                     <button onClick={this.toggleSearch} className='find-event'>Find Show</button>
                     <button onClick={this.toggleSubmit} className='submit-event'>Submit Show</button>
                 </div>
                 {this.state.submit ? <SubmitPopUp toggle={this.toggleSubmit} /> : null }
-                {this.state.search ? <SearchPopUp toggle={this.toggleSearch} fetchRequest={this.fetchRequest}/> : null }
-                {this.state.shows.length ? <div><button className='reset' onClick={this.toggleReset}>Reset Results</button></div> : null}
+                {this.state.search ? <SearchPopUp currentCity={this.state.city} toggle={this.toggleSearch} fetchRequest={this.fetchRequest}/> : null }
+                {this.state.shows.length ? <div><button className='reset' onClick={this.toggleReset}>Reset</button></div> : null}
                 {shows}
+                {/* {this.state.shows.length ? <div><button className='reset' onClick={this.toggleReset}>Reset</button></div> : null} */}
             </div>
-            {/* {shows} */}
             </div>
         );
     }
@@ -118,20 +132,3 @@ class App extends Component {
 
 export default App;
 
-// return (
-//     <div>
-//     <div id='main-div'>
-//         <h3 id='small-banner'>Let us plan your night!</h3>
-//         <div onClick={this.toggleSubmit}>
-//             <button className='submit-event'>Submit Show</button>
-//         </div>
-//         {this.state.submit ? <SubmitPopUp toggle={this.toggleSubmit} /> : null }
-//         <div onClick={this.toggleSearch}>
-//             <button className='find-event'>Find Show</button>
-//         </div>
-//         {this.state.search ? <SearchPopUp toggle={this.toggleSearch} fetchRequest={this.fetchRequest}/> : null }
-//         {this.state.shows.length ? <div><button className='reset' onClick={this.toggleReset}>Reset Results</button></div> : null}
-//     </div>
-//     {shows}
-//     </div>
-// );

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ExistingShowDisplay from './ExistingShowDisplay';
 
 class SubmitPopUp extends Component {
     constructor(props) {
@@ -10,7 +11,8 @@ class SubmitPopUp extends Component {
             date: '',
             time: '',
             cover: '',
-            existsAlready: false
+            existsAlready: false,
+            existingShow: []
         }
         this.toggle=this.props.toggle;
         this.handlePerformerChange = this.handleChange.bind(this, 'performer');
@@ -46,7 +48,7 @@ class SubmitPopUp extends Component {
             performer: this.state.performer,
             venue: this.state.venue,
             address: this.state.address,
-            date: this.state.date,
+            date: new Date(this.state.date).toString(),
             time: this.state.time,
             cover: this.state.cover
         };
@@ -68,15 +70,17 @@ class SubmitPopUp extends Component {
           })
           .then(res => res.json())
           .then(data => {
-            if (typeof data === 'string') {
-                // console.log('THIS IS THE DATA IN SUBMITPOPUP.JS', data)
+            if (typeof data === 'object') {
+                console.log('THIS IS THE DATA IN SUBMITPOPUP.JS', data)
                 this.setState({
-                    existsAlready: true
+                    existsAlready: true,
+                    existingShow: data
                 })
             }
-            if (typeof data === 'object') { this.setState({
-                existsAlready: false
-            })
+            if (typeof data === 'string') {
+                // this.setState({
+                // existsAlready: false
+                // })
             this.toggle();
             }
           })
@@ -90,7 +94,7 @@ class SubmitPopUp extends Component {
                     {/* <span id='submit-close' onClick={this.handleClose}>&times;</span> */}
                     <div className='container'>
                     <span id='submit-close' onClick={this.handleClose}>&times;</span>
-                        {this.state.existsAlready ? <div><h3 id='submit-thanks'>Girl, you're late - someone already told us this!</h3><button id='send-info' onClick={this.handleRetry}>Submit Another Show</button></div> : <div><h3 id='submit-deetz'>Give Us The Deetz!</h3><label id='performer'>
+                        {this.state.existsAlready ? <div><h3 id='submit-thanks'>Girl, you're late - someone already told us this! Here's the event:</h3><ExistingShowDisplay performer={this.state.existingShow[0].performer} venue={this.state.existingShow[0].venue} address={this.state.existingShow[0].address} date={this.state.existingShow[0].date} time={this.state.existingShow[0].time} cover={this.state.existingShow[0].cover}key={`existing-show`}/><button id='send-info' onClick={this.handleRetry}>Submit Another Show</button></div> : <div><h3 id='submit-deetz'>Give Us The Deetz!</h3><label id='performer'>
                             Performer:
                             <input onChange={this.handlePerformerChange} type='text' value = {this.state.performer} />
                         </label>
@@ -104,11 +108,11 @@ class SubmitPopUp extends Component {
                         </label>
                         <label id='date'>
                             Date:
-                            <input onChange={this.handleDateChange} type='text' value = {this.state.date} placeholder='MM/DD/YY' />
+                            <input onChange={this.handleDateChange} type='text' value = {this.state.date} placeholder='MM/DD/YYYY' />
                         </label>
                         <label id='time'>
                             Time:
-                            <input onChange={this.handleTimeChange} type='text' value = {this.state.time} placeholder='E.g.: 8PM'/>
+                            <input onChange={this.handleTimeChange} type='text' value = {this.state.time} placeholder='E.g.: 8pm'/>
                         </label>
                         <label id='cover'>
                             Cover:

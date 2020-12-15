@@ -7,7 +7,9 @@ const showSchema = new Schema({
     address: {type: String, required: true},
     date: {type: String, required: true},
     time: {type: String, required: true},
-    cover: {type: Number, required: true}
+    cover: {type: Number, required: true},
+    latitude: {type: Number, required: true},
+    longitude: {type: Number, required: true}
 });
 
 module.exports = mongoose.model('Show', showSchema);
